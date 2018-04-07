@@ -1,0 +1,12 @@
+{% extends 'blogapp/base.html' %}
+
+{% block content %}
+<div class="article-detail">
+	<div class="article">
+		<img src="{{ article.thumb.url }}">
+		<h2 style="font-weight: bolder;font-size: 20px;">{{ article.title }}</h2>
+		<p>{{ article.body }}</p>
+		<p>{{ article.date }}</p>
+	</div>	
+</div>
+{% endblock %}

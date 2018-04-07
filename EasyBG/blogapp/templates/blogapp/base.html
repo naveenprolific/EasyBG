@@ -1,0 +1,48 @@
+{% load static %} 
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="{% static 'blogapp/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'blogapp/css/styles.css' %}">
+    <link rel="shortcut icon"  href="{% static 'blogapp/images/easy.ico' %}">
+</head>
+<body>
+  <div class="container-fluid">
+    <nav class="navbar navbar">
+      <div class="container-fluid">
+   <a class="navbar-brand" href="{% url 'home' %}">
+    <img src="{% static 'blogapp/images/easy.jpg' %}" alt="logo" style="width:80px;height: 80px;border-radius: 8px;">
+   </a>
+  <ul >
+    {% if user.is_authenticated %}
+    <li class="nav-item">
+      <form class="logout-link" action="{% url 'accounts:logout' %}" method="post">
+                    {% csrf_token %}
+      <button type="submit" class="highlight">Logout</button>
+     </form>
+    </li>
+    <li class="nav-item"><a href="{% url 'blogapp:create' %}" class="highlight">Add Article</a></li>
+    {% else %}
+    <li class="nav-item">
+        <a href="{% url 'accounts:register' %}" class="highlight"><span class="glyphicon glyphicon-user"></span>Signup</a>
+    </li>
+    <li class="nav-item">
+      <a href="{% url 'accounts:login' %}" class="highlight"><span class="glyphicon glyphicon-log-in"></span>Login </a>
+    </li>
+    {% endif %}
+  </ul>
+
+  </div>
+</nav>
+	
+   <div class="wrapper">
+   {% block content %}
+
+   {% endblock %}
+   </div>
+  </div>
+</body>
+</html>

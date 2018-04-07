@@ -1,0 +1,43 @@
+{% extends 'blogapp/base.html' %}
+
+{% block content %}
+    <div class="create-article">
+        <h2>Create an Awesome New Article</h2>
+        <form class="site-form" action="{% url 'blogapp:create' %}" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+     <div class="form-group">
+		<p style="font-weight: bold;color: red;"> {{ form.title.errors }} </p>
+        <label for="{{ form.title.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Title:</label>
+        <input class="form-control" id="{{ form.title.id_for_label }}" maxlength="100" name="{{ form.title.html_name }}"  type="text" required />
+        {% if form.title.help_text %}
+        <p class="help">{{ form.title.help_text|safe }}</p>
+        {% endif %}
+    </div>
+     <div class="form-group">
+		<p style="font-weight: bold;color: red;"> {{ form.body.errors }} </p>
+        <label for="{{ form.body.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Body:</label>
+        <textarea  class="form-control" name="{{ form.body.html_name }}" cols="40" rows="10"  id="{{ form.body.id_for_label }}"  required></textarea>
+        {% if form.body.help_text %}
+        <p class="help">{{ form.body.help_text|safe }}</p>
+        {% endif %}
+    </div>
+     <div class="form-group">
+		<p style="font-weight: bold;color: red;"> {{ form.slug.errors }} </p>
+        <label for="{{ form.slug.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Slug:</label>
+        <input class="form-control" id="{{ form.slug.id_for_label }}" maxlength="50" name="{{ form.slug.html_name }}"  type="text" required />
+        {% if form.slug.help_text %}
+        <p class="help">{{ form.slug.help_text|safe }}</p>
+        {% endif %}
+    </div>
+     <div class="form-group">
+		<p style="font-weight: bold;color: red;"> {{ form.thumb.errors }} </p>
+        <label for="{{ form.thumb.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Thumbnail:</label>
+        <input  id="{{ form.thumb.id_for_label }}" name="{{ form.thumb.html_name }}" value="{{ form.thumb.value }}" type="file" required />
+        {% if form.thumb.help_text %}
+        <p class="help">{{ form.thumb.help_text|safe }}</p>
+        {% endif %}
+    </div>
+            <input type="submit" value="Create  &raquo;">
+        </form>
+    </div>
+{% endblock %}

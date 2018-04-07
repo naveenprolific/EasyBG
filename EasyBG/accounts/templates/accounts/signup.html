@@ -1,0 +1,58 @@
+{% extends 'blogapp/base.html' %}
+
+{% block content%}
+<h1>Signup</h1>
+<form class="site-form" action="{% url 'accounts:register' %}" method="post">
+	{% csrf_token %}
+	<div class="form-group">
+		<p style="font-weight: bold;color: red;"> {{ form.username.errors }} </p>
+        <label for="{{ form.username.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Username:</label>
+        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="150" name="{{ form.username.html_name }}"  type="text" required />
+        {% if form.username.help_text %}
+        <p class="help">{{ form.username.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+    	<p style="font-weight: bold;color: red;"> {{ form.first_name.errors }} </p>
+        <label for="{{ form.first_name.id_for_label }}" style="font-weight: bold;font-family: Georgia;">First Name:</label>
+        <input class="form-control" id="{{ form.first_name.id_for_label }}" maxlength="30" name="{{ form.first_name.html_name }}"  type="text" required />
+        {% if form.first_name.help_text %}
+        <p class="help">{{ form.first_name.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+    	<p style="font-weight: bold;color: red;"> {{ form.last_name.errors }} </p>
+        <label for="{{ form.last_name.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Last Name:</label>
+        <input class="form-control" id="{{ form.last_name.id_for_label }}" maxlength="30" name="{{ form.last_name.html_name }}"  type="text" required />
+        {% if form.last_name.help_text %}
+        <p class="help">{{ form.last_name.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+    	<p style="font-weight: bold;color: red;"> {{ form.email.errors }} </p>
+        <label for="{{ form.email.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Email:</label>
+        <input class="form-control" id="{{ form.email.id_for_label }}" name="{{ form.email.html_name }}"  type="text" required />
+        {% if form.email.help_text %}
+        <p class="help">{{ form.email.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+    	<p style="font-weight: bold;color: red;"> {{ form.password1.errors }} </p>
+        <label for="{{ form.password1.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Password:</label>
+        <input class="form-control" id="{{ form.password1.id_for_label }}" maxlength="80" name="{{ form.password1.html_name }}"  type="password" required />
+        {% if form.password1.help_text %}
+        <p class="help">{{ form.password1.help_text|safe }}</p>
+        {% endif %}
+    </div>
+    <div class="form-group">
+    	<p style="font-weight: bold;color: red;"> {{ form.password2.errors }} </p>
+        <label for="{{ form.password2.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Confirm Password:</label>
+        <input class="form-control" id="{{ form.password2.id_for_label }}" maxlength="80" name="{{ form.password2.html_name }}"  type="password"  required />
+        {% if form.password2.help_text %}
+        <p class="help">{{ form.password2.help_text|safe }}</p>
+        {% endif %}
+    </div>
+
+	<input type="submit" name="Signup" value="Signup &raquo;">
+</form>
+{% endblock %}

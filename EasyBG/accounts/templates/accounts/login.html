@@ -1,0 +1,25 @@
+{% extends 'blogapp/base.html' %}
+
+{% block content%}
+<h1>Login</h1>
+<form class="site-form" action="{% url 'accounts:login' %}" method="post">
+	{% csrf_token %}
+	{% if form.errors %}
+	<p style="font-weight: bold;color: red;"> Invalid Credentials..Please check the username and password..</p>
+	{% endif %}
+    <div class="form-group">
+        <label for="{{ form.username.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Username:</label>
+        <input class="form-control" id="{{ form.username.id_for_label }}" maxlength="150" name="{{ form.username.html_name }}"  type="text" required />
+    </div>
+    <div class="form-group">
+        <label for="{{ form.password.id_for_label }}" style="font-weight: bold;font-family: Georgia;">Password:</label>
+        <input class="form-control" id="{{ form.password.id_for_label }}" maxlength="80" name="{{ form.password.html_name }}"  type="password" required  />
+    </div>
+
+	{% if request.GET.next %}
+	 <input type="hidden" name="next" value="{{ request.GET.next }}">
+	 {% endif %}
+	<input type="submit" name="Signup" value="Login &raquo;">   
+</form>
+<p>Not got an account? <a href="{% url 'accounts:register' %}" style="font-weight: bold;font-family: Georgia;">Sign Up</a></p>
+{% endblock %}
